@@ -1,6 +1,29 @@
 buildscript {
     ext {
 
+
+        agp_version28 = '7.4.2'
+        agp_version27 = '7.3.1'
+        agp_version26 = '4.2.2'
+        agp_version25 = '7.3.1'
+        agp_version24 = '4.2.2'
+        agp_version23 = '7.0.0'
+        agp_version22 = '7.0.4'
+        agp_version21 = '7.0.3'
+        agp_version20 = '7.4.2'
+        agp_version19 = '4.2.2'
+        agp_version18 = '4.1.0'
+        agp_version17 = '7.0.2'
+        agp_version16 = '7.3.1'
+        agp_version15 = '8.0.0'
+        agp_version14 = '7.0.0'
+        agp_version13 = '4.2.2'
+        agp_version12 = '7.1.3'
+        agp_version11 = '7.2.0'
+        agp_version10 = '4.2.2'
+        agp_version9 = '7.1.1'
+        agp_version8 = '7.0.0'
+        agp_version7 = '4.2.2'
         agp_version6 = '7.3.1'
         agp_version5 = '7.1.3'
         agp_version4 = '7.2.0'
@@ -16,7 +39,7 @@ buildscript {
     }
 
     dependencies {
-        classpath "com.android.tools.build:gradle:$agp_version6"
+        classpath "com.android.tools.build:gradle:$agp_version28"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }

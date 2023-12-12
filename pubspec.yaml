@@ -40,6 +40,7 @@ dependencies:
   geolocator: ^8.2.0
   material_floating_search_bar: ^0.3.7
   flutter_secure_storage: ^5.0.2
+#  shared_preferences: ^2.0.15
   shared_preferences: ^2.0.13
   jwt_decoder: ^2.0.1
   syncfusion_flutter_charts: ^20.1.48

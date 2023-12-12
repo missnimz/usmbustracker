@@ -22,21 +22,29 @@ void main() async {
     print(_result);
     if (_result) {
       print("TOKEN: ");
-      String token = await const FlutterSecureStorage().read(
-          key: 'token') as String;
-      print(token);
-      bool isExpired = JwtDecoder.isExpired(token);
-      print("EXPIRED");
-      print(isExpired);
-      if (!isExpired) {
-        await Listsensor.getlistsensor();
-        await Listvessel.getlistvessel();
-        await Listuser.getlistuser();
-        await Detail.getuserdetail();
-        //await Listpost.getlistpost();
+      // Perform a null check before casting to String
+      String? token = await const FlutterSecureStorage().read(
+          key: 'token') as String?;
+      // String token = await const FlutterSecureStorage().read(
+      //     key: 'token') as String;
+      if (token != null) { //add new
+        print(token);
+        bool isExpired = JwtDecoder.isExpired(token);
+        print("EXPIRED");
+        print(isExpired);
+        if (!isExpired) {
+          await Listsensor.getlistsensor();
+          await Listvessel.getlistvessel();
+          await Listuser.getlistuser();
+          await Detail.getuserdetail();
+          //await Listpost.getlistpost();
+        }
+        //_home = const Homepage();
+        _home = const Home();
+      } else { //addnew
+        // Handle the case where the token is null (e.g., not found in FlutterSecureStorage)
+        _home = const LoginPage(); //addnew
       }
-      //_home = const Homepage();
-      _home = const Home();
     }
   /*} catch (e) {
     print('Error occurred: $e');
