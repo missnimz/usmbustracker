@@ -65,7 +65,7 @@ class Homepage extends StatelessWidget {
           flexibleSpace: Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
-                  colors: [Colors.black, Colors.blueGrey, Colors.black],
+                  colors: [Colors.purpleAccent, Colors.purple, Colors.purpleAccent],
                   begin: Alignment.bottomRight,
                   end: Alignment.topLeft
               ),

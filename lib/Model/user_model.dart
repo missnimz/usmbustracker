@@ -101,6 +101,7 @@ class User {
   String? role;
   String? updatedAt;
   String? profileImage;
+  String? email;
 
   User(
       {this.address,
@@ -111,7 +112,8 @@ class User {
       this.phone,
       this.role,
       this.updatedAt,
-      this.profileImage});
+      this.profileImage,
+      this.email});
 
   User.fromJson(Map<String, dynamic> json) {
     address = json['address'];
@@ -123,6 +125,7 @@ class User {
     role = json['role'];
     updatedAt = json['updated_at'];
     profileImage = json['profileImage'];
+    email = json['email'];
   }
 
   Map<String, dynamic> toJson() {
@@ -136,6 +139,7 @@ class User {
     data['role'] = role;
     data['updated_at'] = updatedAt;
     data['profileImage'] = profileImage;
+    data['email'] = email;
     return data;
   }
 }

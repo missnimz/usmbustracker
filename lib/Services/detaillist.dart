@@ -22,7 +22,8 @@ class Detail {
     String token = await Localstorage.getToken() as String;
     print(token);
     final response = await http.get(
-        Uri.parse('http://moby.cs.usm.my:8000/api/v1/current_user'),
+        // Uri.parse('http://moby.cs.usm.my:8000/api/v1/current_user'),
+        Uri.parse('http://10.0.2.2:8000/api/v1/current_user'),
         headers: {HttpHeaders.authorizationHeader: 'Bearer $token'});
 
     final responsejson = jsonDecode(response.body);
@@ -41,7 +42,8 @@ class Listuser {
     String token = await Localstorage.getToken() as String;
     print(token);
     final response = await http.get(
-        Uri.parse('http://moby.cs.usm.my:8000/api/v1/users'),
+        // Uri.parse('http://moby.cs.usm.my:8000/api/v1/users'),
+        Uri.parse('http://10.0.2.2:8000/api/v1/users'),
         headers: {HttpHeaders.authorizationHeader: 'Bearer $token'});
 
     final responsejson = jsonDecode(response.body);
@@ -58,7 +60,8 @@ class Listsensor {
   static Future<void> getlistsensor() async {
     String token = await Localstorage.getToken() as String;
     final response = await http.get(
-        Uri.parse('http://moby.cs.usm.my:8000/api/v1/sensors'),
+        // Uri.parse('http://moby.cs.usm.my:8000/api/v1/sensors'),
+        Uri.parse('http://10.0.2.2:8000/api/v1/sensors'),
         headers: {HttpHeaders.authorizationHeader: 'Bearer $token'});
 
     final responsejson = jsonDecode(response.body);
@@ -76,7 +79,8 @@ class Listvessel {
     String token = await Localstorage.getToken() as String;
     print(token);
     final response = await http.get(
-        Uri.parse('http://moby.cs.usm.my:8000/api/v1/vessels'),
+        // Uri.parse('http://moby.cs.usm.my:8000/api/v1/vessels'),
+        Uri.parse('http://10.0.2.2:8000/api/v1/vessels'),
         headers: {HttpHeaders.authorizationHeader: 'Bearer $token'});
 
     final responsejson = jsonDecode(response.body);
@@ -95,12 +99,32 @@ class Listpost{
     String token = await Localstorage.getToken() as String;
     print(token);
     final response = await http.get(
-        Uri.parse('http://moby.cs.usm.my:8000/api/v1/userposts'),
+        // Uri.parse('http://moby.cs.usm.my:8000/api/v1/userposts'),
+        Uri.parse('http://10.0.2.2:8000/api/v1/userposts'),
         headers: {HttpHeaders.authorizationHeader: 'Bearer $token'});
 
     final responsejson = jsonDecode(response.body);
     userpostlist = UserPostList.fromJson(responsejson);
   }
+
+// class Adminpost{
+//   static AdminPostList? userpostlist;
+//
+//   factory Listpost() => Listpost._internal();
+//   Listpost._internal();
+//
+//   // GET ALL USERPOSTS (ALL USERS) FROM SERVER
+//   static Future<void> getlistpost() async {
+//   String token = await Localstorage.getToken() as String;
+//   print(token);
+//   final response = await http.get(
+//   // Uri.parse('http://moby.cs.usm.my:8000/api/v1/userposts'),
+//   Uri.parse('http://10.0.2.2:8000/api/v1/adminposts'),
+//   headers: {HttpHeaders.authorizationHeader: 'Bearer $token'});
+//
+//   final responsejson = jsonDecode(response.body);
+//   adminpostlist = AdminPostList.fromJson(responsejson);
+// }
 
   // GET USERPOSTS BY USER ID FROM SERVER
   static Future<void> getbyuserid() async {
@@ -108,7 +132,8 @@ class Listpost{
     String token = await Localstorage.getToken() as String;
     print(token);
     final response = await http.get(
-        Uri.parse('http://moby.cs.usm.my:8000/api/v1/userposts/user/id/$userId'));
+        // Uri.parse('http://moby.cs.usm.my:8000/api/v1/userposts/user/id/$userId'));
+    Uri.parse('http://10.0.2.2:8000/api/v1/userposts/user/id/$userId'));
 
     final responsejson = jsonDecode(response.body);
     userpostlist = UserPostList.fromJson(responsejson);
@@ -117,7 +142,8 @@ class Listpost{
   // POST A PHOTO POST INTO SERVER
   static Future<void> adduserpost(String? imageUrl, int? userId, String? caption) async {
     final response = await http.post(
-        Uri.parse('http://moby.cs.usm.my:8000/api/v1/userposts'),
+        // Uri.parse('http://moby.cs.usm.my:8000/api/v1/userposts'),
+        Uri.parse('http://10.0.2.2:8000/api/v1/userposts'),
         body: jsonEncode(
             {"image_url": imageUrl, "user_id": userId, "caption": caption})
     );
@@ -134,7 +160,8 @@ class Listpost{
 
   // UPDATE USERPOST
   static Future<void> updateuserpost(String? caption, int? id) async {
-    final response = await http.put(Uri.parse("http://moby.cs.usm.my:8000/api/v1/userposts/$id"),
+    // final response = await http.put(Uri.parse("http://moby.cs.usm.my:8000/api/v1/userposts/$id"),
+    final response = await http.put(Uri.parse("http://10.0.2.2:8000/api/v1/userposts/$id"),
         body: jsonEncode({"caption":caption})
     );
 
@@ -147,7 +174,8 @@ class Listpost{
 
   // DELETE USERPOST
   static Future<void> deleteuserpost(int? id) async {
-    final response = await http.delete(Uri.parse("http://moby.cs.usm.my:8000/api/v1/userposts/$id"));
+    // final response = await http.delete(Uri.parse("http://moby.cs.usm.my:8000/api/v1/userposts/$id"));
+    final response = await http.delete(Uri.parse("http://10.0.2.2:8000/api/v1/userposts/$id"));
 
     if(response.statusCode == 200){
       print("UPDATED");

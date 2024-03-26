@@ -13,7 +13,7 @@ class Background extends StatelessWidget {
           decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Colors.black, Colors.blueGrey, Colors.black
+                  Colors.purpleAccent, Colors.purple, Colors.purpleAccent
                 ],
                 begin: Alignment.bottomRight,
                 end: Alignment.topLeft,
@@ -22,8 +22,13 @@ class Background extends StatelessWidget {
         ),
         const Column(
           children: [
-            SizedBox(height: 40,),
-            Image(image: ExactAssetImage("assets/images/neleyan_net_logo.png",),
+            SizedBox(height: 150,),
+            // Image(image: ExactAssetImage("assets/images/usm_ens_logo.png",),
+            // ),
+            Center( // This centers the image horizontally within the column
+              child: Image(
+                image: ExactAssetImage("assets/images/usm_ens_logo.png"),
+              ),
             ),
           ],
         ),

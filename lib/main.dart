@@ -1,8 +1,12 @@
 import 'package:nelayannet/Screens/Analytic/analytic.dart';
 import 'package:nelayannet/Screens/FishingSpot/saved_spot.dart';
 import 'package:nelayannet/Screens/Journey/journey.dart';
+import 'package:nelayannet/Screens/dashboard/bottomnavbar.dart';
+import 'package:nelayannet/Screens/ens/ens.dart';
+import 'package:nelayannet/Screens/environment/environment.dart';
 import 'package:nelayannet/Screens/fishermanlist/fishermanlist.dart';
 import 'package:nelayannet/Screens/profile/profile.dart';
+import 'package:nelayannet/Screens/tracking/tracking.dart';
 import 'package:nelayannet/Services/detaillist.dart';
 import 'package:flutter/material.dart';
 import 'package:nelayannet/Screens/login/login.dart';
@@ -11,6 +15,7 @@ import 'Screens/homepage/bottomnavigatorbar.dart';
 import 'Screens/homepage/homepage.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
+import 'Screens/dashboard/dashboard.dart';
 
 import 'Screens/profile/components/details_interface.dart';
 import 'Screens/profile/components/editprofile_interface.dart';
@@ -37,10 +42,12 @@ void main() async {
           await Listvessel.getlistvessel();
           await Listuser.getlistuser();
           await Detail.getuserdetail();
-          //await Listpost.getlistpost();
+          await Listpost.getlistpost();
         }
         //_home = const Homepage();
-        _home = const Home();
+        // _home = const Home();
+        _home = const Dash();
+        // _home = const Dashboard();
       } else { //addnew
         // Handle the case where the token is null (e.g., not found in FlutterSecureStorage)
         _home = const LoginPage(); //addnew
@@ -71,8 +78,14 @@ class MyApp extends StatelessWidget {
       home: _home,
       routes: {
         "/login": (_) => const LoginPage(),
-        "/home": (_) => const Home(),
-        "/homepage": (_) => const Homepage(),
+        // "/home1": (_) => const Home(),
+        "/home": (_) => const Dash(),
+        // "/homepage1": (_) => const Dashboard(),
+        // "/homepage": (_) => const Homepage(),
+        "/dashboard": (_) => const Dashboard(),
+        "/ens": (_) => const Ens(),
+        "/tracking": (_) => const TrackingPage(),
+        "/environment": (_) => const Environment(),
         "/fishermans": (_) => const Fishermans(),
         "/analytic": (_) => const Analyticpage(),
         "/journey": (_) => const UserJourney(),
@@ -80,7 +93,7 @@ class MyApp extends StatelessWidget {
         "/fishingspot": (_) => const FishingSpot(),
         "/editprofile": (_) => const EditProfile(),
         "/userdetails": (_) => const DetailsInterface(),
-        //"/post": (_) => Post(),
+        // "/post": (_) => Post(),
 
       },
     );

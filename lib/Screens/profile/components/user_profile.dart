@@ -32,75 +32,259 @@ class _ProfileUIState extends State<ProfileUI> {
     String? imagepath = user!.profileImage;
     var imageProfile = imagepath!.contains('https://') ? NetworkImage(imagepath) : FileImage(File(imagepath));
 
+    // return DefaultTabController(
+    //   length: 1,
+    //   child: Scaffold(
+    //     body: SingleChildScrollView(
+    //       child: Column(
+    //         children: [
+    //           const SizedBox(height: 24),
+    //           Stack(
+    //             alignment: Alignment.topCenter,
+    //             children: [
+    //               Container(
+    //                 margin: EdgeInsets.only(top: 60),
+    //                 decoration: BoxDecoration(
+    //                   color: Colors.grey.shade300,
+    //                   borderRadius: BorderRadius.circular(8),
+    //                 ),
+    //                 padding: EdgeInsets.fromLTRB(16, 80, 16, 16),
+    //                 child: Column(
+    //                   crossAxisAlignment: CrossAxisAlignment.start,
+    //                   children: [
+    //                     Row(
+    //                       children: [
+    //                         Icon(Icons.badge, color: Colors.purple),
+    //                         SizedBox(width: 8),
+    //                         Expanded(child: Text("ID: ${user.icNumber}", style: TextStyle(color: Colors.purple, fontWeight: FontWeight.bold, fontSize: 18))),
+    //                       ],
+    //                     ),
+    //                     SizedBox(height: 8),
+    //                     Row(
+    //                       children: [
+    //                         Icon(Icons.email, color: Colors.purple),
+    //                         SizedBox(width: 8),
+    //                         Expanded(child: Text("Email: ${user.email}", style: TextStyle(color: Colors.purple, fontWeight: FontWeight.bold, fontSize: 18))),
+    //                       ],
+    //                     ),
+    //                     SizedBox(height: 8),
+    //                     Row(
+    //                       children: [
+    //                         Icon(Icons.person, color: Colors.purple),
+    //                         SizedBox(width: 8),
+    //                         Expanded(child: Text("Name: ${user.name}", style: TextStyle(color: Colors.purple, fontWeight: FontWeight.bold, fontSize: 18))),
+    //                       ],
+    //                     ),
+    //                     SizedBox(height: 8),
+    //                     Row(
+    //                       children: [
+    //                         Icon(Icons.home, color: Colors.purple),
+    //                         SizedBox(width: 8),
+    //                         Expanded(child: Text("Address: ${user.address}", style: TextStyle(color: Colors.purple, fontWeight: FontWeight.bold, fontSize: 18))),
+    //                       ],
+    //                     ),
+    //                     // Add more details here as needed
+    //                   ],
+    //                 ),
+    //               ),
+    //               Container(
+    //                 width: 120,
+    //                 height: 120,
+    //                 decoration: BoxDecoration(
+    //                   shape: BoxShape.circle,
+    //                   border: Border.all(color: Colors.white, width: 4),
+    //                   image: DecorationImage(
+    //                     image: imageProfile as ImageProvider,
+    //                     fit: BoxFit.cover,
+    //                   ),
+    //                 ),
+    //               ),
+    //             ],
+    //           ),
+    //         ],
+    //       ),
+    //     ),
+    //   ),
+    // );
+
     return DefaultTabController(
       length: 1,
       child: Scaffold(
-        //body: ListView(
-        body: Column(
-          //physics: BouncingScrollPhysics(),
-            children: [
-              const SizedBox(height: 24,),
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children:[
-                    Stack(
-                      children: <Widget>[
-                        CircleAvatar(
-                          backgroundImage: imageProfile as ImageProvider,
-                          radius: 120 / 2,
-                          backgroundColor: Colors.black26,
+        body: Center(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: MediaQuery.of(context).size.height,
+            ),
+            child: IntrinsicHeight(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Stack(
+                    alignment: Alignment.topCenter,
+                    children: [
+                      // Purple rectangle
+                      Container(
+                        margin: EdgeInsets.only(top: 0, left: 0, right: 0),
+                        height: 150,
+                        decoration: BoxDecoration(
+                          color: Colors.purple,
+                          borderRadius: BorderRadius.circular(0),
                         ),
-                      ],
-                    ),
-
-                    //const SizedBox(height: 24,),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text("${user.name}",
-                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize:20),
+                      ),
+                      // Adjusted container for details
+                      Container(
+                        margin: EdgeInsets.only(top: 80, left: 32, right: 32),
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade300,
+                          borderRadius: BorderRadius.circular(8),
                         ),
-                        const SizedBox(height: 4,),
-                        Row(
+                        padding: EdgeInsets.fromLTRB(16, 50, 16, 16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Icon(Icons.phone,size: 15,color: Colors.grey,),
-                            Text(" ${user.phone}",
-                              style: const TextStyle(color: Colors.grey),
+                            // Name centered
+                            Center(
+                              child: Text("${user.name}",
+                                style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 24),
+                                textAlign: TextAlign.center,
+                              ),
                             ),
-                          ],
-                        ),
-                        const SizedBox(height: 4,),
-                        Row(
-                          children: [
-                            const Icon(Icons.home,size: 15,color: Colors.grey,),
-                            Text(" ${user.address}", //" Address",
-                              style: const TextStyle(color: Colors.grey),
+                            // Email centered and in italic
+                            Center(
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min, // Ensure the row only takes up necessary space
+                                children: [
+                                  Icon(Icons.email, color: Colors.purple),
+                                  SizedBox(width: 8), // Provide some spacing between the icon and the text
+                                  Text(
+                                    "razak@student.usm.my",
+                                    style: TextStyle(color: Colors.black, fontStyle: FontStyle.italic, fontSize: 18),
+                                  ),
+                                ],
+                              ),
                             ),
+                            SizedBox(height: 20),
+                            // Other details adjusted as requested
+                            Row(
+                              children: [
+                                Icon(Icons.badge, color: Colors.purple),
+                                SizedBox(width: 8),
+                                Expanded(child: Text("${user.icNumber}", style: TextStyle(color: Colors.black, fontSize: 18))), // Non-bold
+                              ],
+                            ),
+                            SizedBox(height: 20),
+                            Row(
+                              children: [
+                                Icon(Icons.home, color: Colors.purple),
+                                SizedBox(width: 8),
+                                Expanded(child: Text("${user.address}", style: TextStyle(color: Colors.black, fontSize: 18))), // Non-bold
+                              ],
+                            ),
+                            // Add more details here as needed
                           ],
                         ),
-                        const SizedBox(height: 4,),
-                        Row(
-                          children: [
-                            const Icon(Icons.directions_boat,size: 15,color: Colors.grey,),
-                            Text(" ${vessel![0].vesselNumber}",
-                              style: const TextStyle(color: Colors.grey),
-                            )
-                          ],
+                      ),
+                      Container(
+                        width: 120,
+                        height: 120,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.white, width: 4),
+                          image: DecorationImage(
+                            image: imageProfile as ImageProvider,
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                        const SizedBox(height: 4,),
-                        Row(
-                          children: [
-                            const Icon(Icons.sensors,size: 15,color: Colors.grey,),
-                            Text(" ${sensor?[0].name}",
-                              style: const TextStyle(color: Colors.grey),
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                  ]
+                      ),
+                    ],
+                  ),
+                  Spacer(), // Use Spacer to push everything up
+                ],
               ),
-              const SizedBox(height: 24,),
+            ),
+          ),
+        ),
+      ),
+    );
+
+
+
+
+
+
+
+
+
+
+    // return DefaultTabController(
+    //   length: 1,
+    //   child: Scaffold(
+    //     //body: ListView(
+    //     body: Column(
+    //       //physics: BouncingScrollPhysics(),
+    //         children: [
+    //           const SizedBox(height: 24,),
+    //           Row(
+    //               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    //               children:[
+    //                 Stack(
+    //                   children: <Widget>[
+    //                     CircleAvatar(
+    //                       backgroundImage: imageProfile as ImageProvider,
+    //                       radius: 120 / 2,
+    //                       backgroundColor: Colors.black26,
+    //                     ),
+    //                   ],
+    //                 ),
+    //
+    //                 //const SizedBox(height: 24,),
+    //                 Column(
+    //                   crossAxisAlignment: CrossAxisAlignment.start,
+    //                   children: <Widget>[
+    //                     Text("${user.name}",
+    //                       style: const TextStyle(fontWeight: FontWeight.bold, fontSize:20),
+    //                     ),
+    //                     const SizedBox(height: 4,),
+    //                     Row(
+    //                       children: [
+    //                         const Icon(Icons.phone,size: 15,color: Colors.grey,),
+    //                         Text(" ${user.phone}",
+    //                           style: const TextStyle(color: Colors.grey),
+    //                         ),
+    //                       ],
+    //                     ),
+    //                     const SizedBox(height: 4,),
+    //                     Row(
+    //                       children: [
+    //                         const Icon(Icons.home,size: 15,color: Colors.grey,),
+    //                         Text(" ${user.address}", //" Address",
+    //                           style: const TextStyle(color: Colors.grey),
+    //                         ),
+    //                       ],
+    //                     ),
+    //                     const SizedBox(height: 4,),
+    //                     Row(
+    //                       children: [
+    //                         const Icon(Icons.directions_boat,size: 15,color: Colors.grey,),
+    //                         Text(" ${vessel![0].vesselNumber}",
+    //                           style: const TextStyle(color: Colors.grey),
+    //                         )
+    //                       ],
+    //                     ),
+    //                     const SizedBox(height: 4,),
+    //                     Row(
+    //                       children: [
+    //                         const Icon(Icons.sensors,size: 15,color: Colors.grey,),
+    //                         Text(" ${sensor?[0].name}",
+    //                           style: const TextStyle(color: Colors.grey),
+    //                         )
+    //                       ],
+    //                     )
+    //                   ],
+    //                 ),
+    //               ]
+    //           ),
+    //           const SizedBox(height: 24,),
               /*IntrinsicHeight(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -152,28 +336,28 @@ class _ProfileUIState extends State<ProfileUI> {
                 ],
               ),
             ),*/
-              const SizedBox(height: 24,),
+              // const SizedBox(height: 24,),
               //Post photos
-              Expanded(
-                  child: TabBarView(
-                    children: [
-                      GridPost(id: user.id),
-                    ],
-                  )
-              )
-            ]
-        ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.blueGrey,
-          foregroundColor: Colors.black,
-          onPressed: (){
-            //Navigator.of(context).pushNamed("/post");
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const Post(),),);
-          },
-          child: const Icon(Icons.add, color: Colors.white,),
-        ),
-      ),
-    );
+              // Expanded(
+              //     child: TabBarView(
+              //       children: [
+              //         GridPost(id: user.id),
+              //       ],
+              //     )
+              // )
+        //     ]
+        // ),
+        // floatingActionButton: FloatingActionButton(
+        //   backgroundColor: Colors.blueGrey,
+        //   foregroundColor: Colors.black,
+        //   onPressed: (){
+        //     //Navigator.of(context).pushNamed("/post");
+        //     Navigator.push(context, MaterialPageRoute(builder: (context) => const Post(),),);
+        //   },
+        //   child: const Icon(Icons.add, color: Colors.white,),
+        // ),
+    //   ),
+    // );
   }
 
   @override
@@ -188,111 +372,111 @@ class _ProfileUIState extends State<ProfileUI> {
   }
 }
 
-class GridPost extends StatefulWidget {
-  final int? id;
+// class GridPost extends StatefulWidget {
+//   final int? id;
+//
+//   const GridPost({
+//     Key? key,
+//     required this.id
+//   }) : super(key: key);
+//
+//   @override
+//   _GridPost createState() => _GridPost();
+// }
 
-  const GridPost({
-    Key? key,
-    required this.id
-  }) : super(key: key);
+// class _GridPost extends State<GridPost>{
+//   //List<String?> userPost = [];
+//   List<UserPost> userPost = [];
+//   late UserPostList posts; //= Listpost.userpostlist as UserPostList;
+//   var allposts;
+//   var count;
+//
+//   @override
+//   void initState(){
+//     refreshPost();
+//     super.initState();
+//   }
+//
+//   Future refreshPost() async {
+//     //await Listpost.getlistpost();
+//     await Listpost.getbyuserid();
+//
+//     userPost.clear();
+//       setState(() {
+//       posts = Listpost.userpostlist as UserPostList;
+//       allposts = posts.data;
+//       count = posts.data!.length;
+//
+//       //Store user photos in a list
+//
+//       for (int i=0; i<count; i++) {
+//         final Upost = allposts![i];
+//         //var userID = Upost.user_id;
+//         //if (userID == widget.id) {
+//         //var imagePath = Upost.image_url;
+//         //userPost.add(imagePath);
+//         addlist(Upost.id, Upost.image_url, Upost.caption);
+//         //}
+//       }
+//
+//     });
+//   }
+//
+//
+//   void addlist(int? id, String? imageUrl, String? caption){
+//     final addtolist = UserPost(
+//         id: id,
+//         image_url: imageUrl,
+//         //user_id: user_id,
+//         caption: caption
+//     );
+//     setState(() {
+//       userPost.add(addtolist);
+//     });
+//   }
 
-  @override
-  _GridPost createState() => _GridPost();
-}
-
-class _GridPost extends State<GridPost>{
-  //List<String?> userPost = [];
-  List<UserPost> userPost = [];
-  late UserPostList posts; //= Listpost.userpostlist as UserPostList;
-  var allposts;
-  var count;
-
-  @override
-  void initState(){
-    refreshPost();
-    super.initState();
-  }
-
-  Future refreshPost() async {
-    //await Listpost.getlistpost();
-    await Listpost.getbyuserid();
-
-    userPost.clear();
-      setState(() {
-      posts = Listpost.userpostlist as UserPostList;
-      allposts = posts.data;
-      count = posts.data!.length;
-
-      //Store user photos in a list
-
-      for (int i=0; i<count; i++) {
-        final Upost = allposts![i];
-        //var userID = Upost.user_id;
-        //if (userID == widget.id) {
-        //var imagePath = Upost.image_url;
-        //userPost.add(imagePath);
-        addlist(Upost.id, Upost.image_url, Upost.caption);
-        //}
-      }
-
-    });
-  }
-
-
-  void addlist(int? id, String? imageUrl, String? caption){
-    final addtolist = UserPost(
-        id: id,
-        image_url: imageUrl,
-        //user_id: user_id,
-        caption: caption
-    );
-    setState(() {
-      userPost.add(addtolist);
-    });
-  }
-
-  @override
-  Widget build(BuildContext context){
-    return RefreshIndicator(
-      onRefresh: refreshPost,
-      child: GridView.builder(
-        //itemCount: count,
-          itemCount: userPost.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-          itemBuilder: (context, index){
-            //final post = allposts[index];
-            //var imagePath = post.image_url;
-            //var image = imagePath.contains('https://') ? NetworkImage(imagePath) : FileImage(File(imagePath));
-
-            //----
-            final post = userPost[index];
-            var imagePath = post.image_url;
-            var image = imagePath!.contains('https://') ? NetworkImage(imagePath) : FileImage(File(imagePath));
-
-            //var image = post!.contains('https://') ? NetworkImage(post) : FileImage(File(post));
-
-
-            return GestureDetector(
-              child: Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: image as ImageProvider,
-                        fit: BoxFit.cover,
-                      )
-                  ),
-                ),
-              ),
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ViewPost(imageTemp: imagePath, id: post.id, caption: post.caption),),);
-              },
-            );
-          }
-      ),
-    );
-  }
-}
+  // @override
+  // Widget build(BuildContext context){
+  //   return RefreshIndicator(
+  //     onRefresh: refreshPost,
+  //     child: GridView.builder(
+  //       //itemCount: count,
+  //         itemCount: userPost.length,
+  //         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+  //         itemBuilder: (context, index){
+  //           //final post = allposts[index];
+  //           //var imagePath = post.image_url;
+  //           //var image = imagePath.contains('https://') ? NetworkImage(imagePath) : FileImage(File(imagePath));
+  //
+  //           //----
+  //           final post = userPost[index];
+  //           var imagePath = post.image_url;
+  //           var image = imagePath!.contains('https://') ? NetworkImage(imagePath) : FileImage(File(imagePath));
+  //
+  //           //var image = post!.contains('https://') ? NetworkImage(post) : FileImage(File(post));
+  //
+  //
+  //           return GestureDetector(
+  //             child: Padding(
+  //               padding: const EdgeInsets.all(2.0),
+  //               child: Container(
+  //                 decoration: BoxDecoration(
+  //                     image: DecorationImage(
+  //                       image: image as ImageProvider,
+  //                       fit: BoxFit.cover,
+  //                     )
+  //                 ),
+  //               ),
+  //             ),
+  //             onTap: (){
+  //               Navigator.push(context, MaterialPageRoute(builder: (context) => ViewPost(imageTemp: imagePath, id: post.id, caption: post.caption),),);
+  //             },
+  //           );
+  //         }
+  //     ),
+  //   );
+  // }
+// }
 
 
 /*

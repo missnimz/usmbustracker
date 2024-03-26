@@ -6,65 +6,73 @@ class Profilepage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery
+        .of(context)
+        .size;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
           "Profile",
-        ),
-        automaticallyImplyLeading: false,
-        actions: [
-          PopupMenuButton(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            onSelected: (newValue) {
-              if (newValue == 0) {
-                Navigator.of(context).pushNamed("/editprofile");
-              }
-              else if (newValue == 1) {
-                Navigator.of(context).pushNamed("/userdetails");
-              }
-            },
-            icon: const Icon(Icons.menu_outlined),
-            itemBuilder: (context) => [
-              /*PopupMenuItem(
-                value: 0,
-                child: Row(
-                  children: [
-                    Icon(Icons.edit, color: Colors.black,),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
-                      child: Text('Edit profile'),
-                    ),
-                  ],
-                ),
-                //onTap: (){ },
-              ),*/
-              const PopupMenuItem(
-                value: 1,
-                child: Row(
-                  children: [
-                    Icon(Icons.person_outline, color: Colors.black,),
-                    Padding(
-                      padding: EdgeInsets.only(left: 10.0),
-                      child: Text('User details'),
-                    ),
-                  ],
-                ),
-              )
-            ],
-
-          )
-        ],
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                colors: [Colors.black, Colors.blueGrey, Colors.black],
-                begin: Alignment.bottomRight,
-                end: Alignment.topLeft
-            ),
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 25,
           ),
         ),
-
+        automaticallyImplyLeading: false,
+        // actions: [
+        //   PopupMenuButton(
+        //     shape: RoundedRectangleBorder(
+        //         borderRadius: BorderRadius.circular(20)),
+        //     onSelected: (newValue) {
+        //       if (newValue == 0) {
+        //         Navigator.of(context).pushNamed("/editprofile");
+        //       }
+        //       else if (newValue == 1) {
+        //         Navigator.of(context).pushNamed("/userdetails");
+        //       }
+        //     },
+        //     icon: const Icon(Icons.menu_outlined),
+        //     itemBuilder: (context) =>
+        //     [
+        //       const PopupMenuItem(
+        //         value: 0,
+        //         child: Row(
+        //           children: [
+        //             Icon(Icons.edit, color: Colors.black,),
+        //             Padding(
+        //               padding: EdgeInsets.only(left: 10.0),
+        //               child: Text('Edit profile'),
+        //             ),
+        //           ],
+        //         ),
+        //       ),
+        //       const PopupMenuItem(
+        //         value: 1,
+        //         child: Row(
+        //           children: [
+        //             Icon(Icons.person_outline, color: Colors.black,),
+        //             Padding(
+        //               padding: EdgeInsets.only(left: 10.0),
+        //               child: Text('User details'),
+        //             ),
+        //           ],
+        //         ),
+        //       )
+        //     ],
+        //   )
+        // ],
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.edit, color: Colors.white),
+            onPressed: () {
+              Navigator.of(context).pushNamed("/editprofile");
+            },
+          ),
+        ],
+        flexibleSpace: Container(
+          color: Colors.purple,
+        ),
       ),
       body: const Stack(
         children: <Widget>[
@@ -80,6 +88,7 @@ class Profilepage extends StatelessWidget {
     );
   }
 }
+
 
 
 

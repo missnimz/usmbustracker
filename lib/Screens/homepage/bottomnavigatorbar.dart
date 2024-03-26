@@ -3,6 +3,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import '../profile/profile.dart';
 import 'Components/map.dart';
 import 'homepage.dart';
+// import '../../../Screens/dashboard.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -31,15 +32,20 @@ class _HomeState extends State<Home>{
         body: _children[_selectedIndex],
         bottomNavigationBar: CurvedNavigationBar(
           items: const [
+            // Icon(Icons.home_outlined, color: Colors.white,),
+            // Icon(Icons.location_on_outlined, color: Colors.white,),
+            // Icon(Icons.person_outline, color: Colors.white,)
             Icon(Icons.home_outlined, color: Colors.white,),
-            Icon(Icons.location_on_outlined, color: Colors.white,),
-            Icon(Icons.person_outline, color: Colors.white,)
+            Icon(Icons.wb_sunny_outlined, color: Colors.white,),
+            Icon(Icons.emergency_outlined, color: Colors.white,),
+            Icon(Icons.bus_alert_outlined, color: Colors.white,),
+            Icon(Icons.notifications, color: Colors.white,)
           ],
           index: _selectedIndex,
           onTap: _navigateBottomNavBar,
           height: 60,
           backgroundColor: Colors.white,
-          color: Colors.blueGrey,
+          color: Colors.purpleAccent,
         )
     );
   }

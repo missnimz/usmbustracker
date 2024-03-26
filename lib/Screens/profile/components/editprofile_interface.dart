@@ -55,15 +55,18 @@ class _EditProfile extends State<EditProfile>{
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Edit"),
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                colors: [Colors.black, Colors.blueGrey, Colors.black],
-                begin: Alignment.bottomRight,
-                end: Alignment.topLeft
-            ),
+        title: const Text(
+          "Edit",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 25,
           ),
+        ),
+        iconTheme: IconThemeData(
+          color: Colors.white, // change your color here
+        ),
+        flexibleSpace: Container(
+          color: Colors.purple,
         ),
       ),
       body: ListView(
@@ -84,7 +87,7 @@ class _EditProfile extends State<EditProfile>{
                     right: 4,
                     child: ClipOval(
                       child: Container(
-                          padding: const EdgeInsets.all(8), color: Colors.blueGrey,
+                          padding: const EdgeInsets.all(8), color: Colors.purple,
                           child: InkWell(
                             child: const Icon(Icons.camera_alt_outlined, color: Colors.white, size: 28.0,),
                             onTap: (){
@@ -154,7 +157,7 @@ class _EditProfile extends State<EditProfile>{
           const SizedBox(height: 28,),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              foregroundColor: Colors.white, backgroundColor: Colors.blueGrey, shape: const StadiumBorder(),
+              foregroundColor: Colors.white, backgroundColor: Colors.purple, shape: const StadiumBorder(),
               padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
             ),
             child: const Text("Save"),

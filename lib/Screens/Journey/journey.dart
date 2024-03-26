@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nelayannet/Screens/Journey/components/distance.dart';
 import 'package:nelayannet/Screens/Journey/components/myjourney.dart';
+import 'package:nelayannet/Screens/tracking/components/locationlist.dart';
 
 class UserJourney extends StatelessWidget {
   const UserJourney({Key? key}) : super(key: key);
@@ -21,6 +22,7 @@ class UserJourney extends StatelessWidget {
           const SingleChildScrollView(
             child: Column(
               children: <Widget>[
+                // LocationsList()
                 DistanceTracelled(),
                 Myjourney(),
               ],
