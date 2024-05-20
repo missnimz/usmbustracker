@@ -11,23 +11,24 @@ class Background extends StatelessWidget {
       children: <Widget>[
         Container(
           decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Colors.purpleAccent, Colors.purple, Colors.purpleAccent
-                ],
-                begin: Alignment.bottomRight,
-                end: Alignment.topLeft,
+              color: Color(0xFF63398F),
+              //gradient: LinearGradient(
+                //colors: [
+                  //Colors.purpleAccent, Colors.purple, Colors.purpleAccent
+                //],
+
+                //begin: Alignment.bottomRight,
+                //end: Alignment.topLeft,
               )
           ),
-        ),
         const Column(
           children: [
-            SizedBox(height: 150,),
+            SizedBox(height: 95,),
             // Image(image: ExactAssetImage("assets/images/usm_ens_logo.png",),
             // ),
             Center( // This centers the image horizontally within the column
               child: Image(
-                image: ExactAssetImage("assets/images/usm_ens_logo.png"),
+                image: ExactAssetImage("assets/images/logobus.png"),
               ),
             ),
           ],

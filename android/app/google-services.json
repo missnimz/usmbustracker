@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "866323323234",
+    "project_id": "nelayannet-b2bd6",
+    "storage_bucket": "nelayannet-b2bd6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:866323323234:android:54209ddb91da08144d343b",
+        "android_client_info": {
+          "package_name": "com.example.nelayannet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZJm2_goLioWq5T0sYtKAfRm-_Hht4sMY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

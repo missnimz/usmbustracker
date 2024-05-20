@@ -3,6 +3,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:nelayannet/Screens/Analytic/analytic.dart';
 import 'package:nelayannet/Screens/ens/ens.dart';
 import 'package:nelayannet/Screens/environment/environment.dart';
+import 'package:nelayannet/Screens/usmbustracker/home_screen.dart';
 import '../profile/profile.dart';
 // import 'Components/map.dart';
 import 'dashboard.dart';
@@ -28,6 +29,7 @@ class _DashState extends State<Dash>{
     const Dashboard(),
     // const ViewMap(),
     const Environment(),
+    const HomeScreen(),
     const Ens(),
     const Profilepage(),
   ];
@@ -43,6 +45,7 @@ class _DashState extends State<Dash>{
             // Icon(Icons.person_outline, color: Colors.white,)
             Icon(Icons.home_outlined, color: Colors.white,),
             Icon(Icons.wb_sunny_outlined, color: Colors.white,),
+            Icon(Icons.directions_bus_sharp, color: Colors.white),
             Icon(Icons.warning_outlined, color: Colors.white,),
             // Icon(Icons.directions_bus_outlined, color: Colors.white,),
             // Icon(Icons.notifications, color: Colors.white,),

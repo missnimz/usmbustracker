@@ -32,7 +32,7 @@ buildscript {
         agp_version1 = agp_version
         agp_version2 = '7.0.3'
     }
-    ext.kotlin_version = '1.6.10'
+    ext.kotlin_version = '1.9.23' //1.6.10
     repositories {
         google()
         mavenCentral()
@@ -41,6 +41,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:$agp_version28"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.google.gms:google-services:4.3.15"
     }
 }
 

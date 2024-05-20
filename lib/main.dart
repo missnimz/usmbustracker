@@ -19,9 +19,15 @@ import 'Screens/dashboard/dashboard.dart';
 
 import 'Screens/profile/components/details_interface.dart';
 import 'Screens/profile/components/editprofile_interface.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+  );
   //try {
     bool _result = await SharedService.isLoggedIn();
     print(_result);
