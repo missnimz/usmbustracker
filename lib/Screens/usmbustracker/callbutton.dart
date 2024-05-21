@@ -1,4 +1,134 @@
+//NEW CODE (21/5/24)
+import 'dart:convert';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:nelayannet/Screens/usmbustracker/notification_services.dart';
+import 'package:http/http.dart' as http;
 
+class CallButton extends StatefulWidget {
+  @override
+  _CallButtonState createState() => _CallButtonState();
+}
+
+class _CallButtonState extends State<CallButton> {
+  String? deviceToken;
+  NotificationServices notificationServices = NotificationServices();
+
+  @override
+  void initState() {
+    super.initState();
+
+    notificationServices.requestNotificationPermission();
+    notificationServices.createNotificationChannel();
+    notificationServices.firebaseInit(context);
+    notificationServices.setupInteractMessage(context);
+    notificationServices.isTokenRefresh();
+
+    FirebaseMessaging.instance.getToken().then((token) {
+      setState(() {
+        deviceToken = token;
+      });
+    });
+
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      if (kDebugMode) {
+        print('notification title:${message.notification?.title}');
+        print('notification body:${message.notification?.body}');
+        print('count:${message.data['notification_count']}');
+        print('data:${message.data}');
+      }
+    });
+
+    FirebaseMessaging.instance.onTokenRefresh.listen((token) {
+      setState(() {
+        deviceToken = token;
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              child: Text(
+                'Push this button to remind the bus driver that you are here!',
+                style: const TextStyle(fontFamily: 'Poppins', fontSize: 22.0),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            const SizedBox(height: 100.0),
+            IconButton(
+              icon: const Icon(
+                Icons.notifications_active,
+                size: 200.0,
+                color: Color(0xFFA366FF),
+              ),
+              onPressed: () {
+                notificationServices.getDeviceToken().then((value) async {
+                  var data = {
+                    'to': value.toString(),
+                    'notification': {
+                      'title': 'Bus Stop: Komca',
+                      'body': 'Someone is here! Hurry up!',
+                    },
+                    'android': {
+                      'notification': {
+                        'notification_count': 23,
+                      },
+                    },
+                    'data': {
+                      'type': 'Reminder',
+                      'id': 'Student 1',
+                    },
+                  };
+
+                  await http.post(
+                    Uri.parse('https://fcm.googleapis.com/fcm/send'),
+                    body: jsonEncode(data),
+                    headers: {
+                      'Content-Type': 'application/json; charset=UTF-8',
+                      'Authorization': 'key=AAAAybTk2WI:APA91bH2-DgKnodnaS0CDtBU2dWyUahxwg56EBu02W3TsCULrN_k5ZGnEJoyb5TILGU3KT3XbjxYUhexhYj73O2FjqNInBIWIz76Xmt4ApscJBuR1lTb7GIbMZDgJhm60pbp8PUJ-oqv'
+                    },
+                  ).then((value) {
+                    if (kDebugMode) {
+                      print(value.body.toString());
+                    }
+                  }).onError((error, stackTrace) {
+                    if (kDebugMode) {
+                      print(error);
+                    }
+                  });
+                });
+              },
+            ),
+            const SizedBox(height: 150.0),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 25.0),
+              child: Text(
+                '(can only push the button every 10 minutes)',
+                style: TextStyle(fontFamily: 'Poppins', fontSize: 15.0),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+
+
+/* ------------- PREVIOUS CODE--------------------------
 //import 'dart:js';
 
 import 'dart:convert';
@@ -25,11 +155,14 @@ class _CallButtonState extends State<CallButton> {
     super.initState();
     //print('initState called');
 
+    notificationServices.requestNotificationPermission();
+
     FirebaseMessaging.instance.getToken().then((token) {
       setState(() {
         deviceToken = token;
       });
     });
+
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       print('notification title:${message.notification?.title}');
@@ -148,21 +281,21 @@ class _CallButtonState extends State<CallButton> {
               ),
 
               onPressed: (){
-              if (deviceToken != null) {
-              print('Device Token: $deviceToken');
+              //if (deviceToken != null) {   -------ni untuk send to another device-----
+              //print('Device Token: $deviceToken');
 
               // send notification from one device to another
 
-              //notificationServices.getDeviceToken().then((value)async{
+              notificationServices.getDeviceToken().then((value)async{
 
               var data = {
                   //'to' : 'cGC5hptASpeocBOVVbrwhF:APA91bHicYsmo9D0X6Dgs2QyJ40w_iTSkeUSqIneKvf56W_rOlb3lXdcfL3KFxnnotpE7ncr083eBBB3xIBs0MVPW1R5FTBoRtm6OBREbvsEAD9rvCI2oCyx5XcAtF1zS5Ldn6pIgTEA', //deviceToken!,//value.toString(),
-                //deviceToken!,//value.toString(),
-                  'to': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTYxOTgxMTUsImlkIjoxLCJvcmlnX2lhdCI6MTcxNjE3NjUxNSwicm9sZSI6IkZpc2hlcm1hbiJ9.maRggOArvt6rhepV4IfDzTuhURgWjp1gEZmqA8IUMzw',
+                //deviceToken!,
+                  'to': value.toString(),
+                  //'to': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTYxOTgxMTUsImlkIjoxLCJvcmlnX2lhdCI6MTcxNjE3NjUxNSwicm9sZSI6IkZpc2hlcm1hbiJ9.maRggOArvt6rhepV4IfDzTuhURgWjp1gEZmqA8IUMzw',
                   'notification' : {
                   'title' : 'Bus Stop: Komca' ,
                   'body' : 'Someone is here! Hurry up!' ,
-                  //"sound": "jetsons_doorbell.mp3"
               },
                   'android': {
                   'notification': {
@@ -191,9 +324,9 @@ class _CallButtonState extends State<CallButton> {
                   print(error);
                 }
               });
-              };
+              });
               },
-            ),
+    ),
 
             //),
             SizedBox(height: 150.0),
@@ -211,7 +344,7 @@ class _CallButtonState extends State<CallButton> {
     );
   }
 }
-
+*/
 
 /*-----original code below--------------*/
 
