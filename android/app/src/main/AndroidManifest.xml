@@ -54,8 +54,10 @@
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <!-- Your API key is already included here -->
+        <!--<meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDWwfY02WgaoPajg4y-xjlta_X8I1H4Oes"/> -->
         <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDWwfY02WgaoPajg4y-xjlta_X8I1H4Oes"/>
+            android:value="AIzaSyDkuGZreKvhWhLfN5MqHhL9ysYk9Yq1HwY"/>
 
         <activity
             android:name=".MainActivity"

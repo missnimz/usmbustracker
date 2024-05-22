@@ -17,8 +17,10 @@ class USMBusTracker extends StatefulWidget {
 
 class _USMBusTrackerState extends State<USMBusTracker> {
   final Completer<GoogleMapController> _controller = Completer();
-  String googleAPIKey = "AIzaSyBWnK3AgGcC03klFrIz3mSPaCWkecBKRFM";
-  late GoogleMapController _googleMapController;
+  //String googleAPIKey = "AIzaSyBWnK3AgGcC03klFrIz3mSPaCWkecBKRFM";
+  String googleAPIKey = "AIzaSyDkuGZreKvhWhLfN5MqHhL9ysYk9Yq1HwY";
+  //late GoogleMapController _googleMapController;
+  GoogleMapController? _googleMapController;
   Timer? _timer;
   LocationData? currentLocation;
 
@@ -33,10 +35,10 @@ class _USMBusTrackerState extends State<USMBusTracker> {
 
 
 
-  static const LatLng sourcelocation = LatLng(
-      5.358797630070934, 100.30462869947357); //DKSK
   static const LatLng destination = LatLng(
-      5.35966286693899, 100.30226835557534); //Komca
+      5.3596,  100.3023); //komca
+  static const LatLng sourcelocation = LatLng(
+      5.3585, 100.3045); //DKSK
 
 
 
@@ -74,17 +76,16 @@ class _USMBusTrackerState extends State<USMBusTracker> {
         polylineCoordinates.add(LatLng(point.latitude, point.longitude));
       });
 
-      setState(() {
-        _polylines.add(
+      _polylines.add(
             Polyline(
-                width: 20,
+                width: 5,
                 polylineId: PolylineId('polyLine'),
-                color: Color(0xFF08A5CB),
+                color: Color(0xFF63398F),
                 points: polylineCoordinates,
                 visible: true
-            )
-        );
-      });
+        )
+      );
+
     }
   }
 
@@ -98,6 +99,7 @@ class _USMBusTrackerState extends State<USMBusTracker> {
     polylinePoints = PolylinePoints();
     super.initState();
     fetchData();
+    setPolylines();
 
   }
 
@@ -106,19 +108,53 @@ class _USMBusTrackerState extends State<USMBusTracker> {
   @override
   void dispose() {
     //_timer?.cancel();
-    _googleMapController.dispose();
+    _googleMapController?.dispose();
     super.dispose();
   }
 
-
+/* ORIGINAL CODE
   void getCurrentLocation() {
     Location location = Location();
+
     location.getLocation().then(
           (location) {
         currentLocation = location;
       },
     );
   }
+  */
+
+  void getCurrentLocation() async{
+    Location location = Location();
+
+    location.getLocation().then(
+          (location) {
+        currentLocation = location;
+      },
+    );
+
+    GoogleMapController googleMapController = await _controller.future;
+
+    location.onLocationChanged.listen(
+            (newLoc)
+        {
+          currentLocation = newLoc;
+          googleMapController.animateCamera(CameraUpdate.newCameraPosition(
+              CameraPosition(
+                zoom: 13.5,
+                  target: LatLng(
+                    newLoc.latitude!,
+                    newLoc.longitude!,
+                  ),
+              ),
+          ));
+
+          setState(() {});
+        },
+    );
+  }
+
+
 
   Future<void> fetchData() async {
     await fetchETA();
@@ -158,7 +194,7 @@ class _USMBusTrackerState extends State<USMBusTracker> {
   @override
   Widget build(BuildContext context) {
 
-    setPolylines();
+    //setPolylines();
 
     return Scaffold(
         body: currentLocation == null
@@ -180,14 +216,20 @@ class _USMBusTrackerState extends State<USMBusTracker> {
                             currentLocation!.longitude!),
                         zoom: 10,
                       ),
-                      onMapCreated: (controller) =>
-                      _googleMapController = controller,
+                        onMapCreated: (controller) {
+                          _controller.complete(controller);
+                          _googleMapController = controller;
+                        },
+
+                      /*onMapCreated: (controller) =>
+                      _googleMapController = controller,*/
                       myLocationButtonEnabled: true,
                       zoomControlsEnabled: true,
                       zoomGesturesEnabled: true,
                       scrollGesturesEnabled: true,
                       rotateGesturesEnabled: true,
                       tiltGesturesEnabled: true,
+                      polylines: _polylines,
 
 
                       /*polylines: {
@@ -209,15 +251,15 @@ class _USMBusTrackerState extends State<USMBusTracker> {
                     ))),*/
                       markers: {
                         Marker(
-                          markerId: MarkerId("currentLocation"),
+                          markerId: const MarkerId("currentLocation"),
                           position: LatLng(currentLocation!.latitude!,
                               currentLocation!.longitude!),
                         ),
-                        /*Marker(
+                        const Marker(
                           markerId: MarkerId("source"),
                           position: sourcelocation,
-                        ),*/
-                        Marker(
+                        ),
+                        const Marker(
                           markerId: MarkerId("destination"),
                           position: destination,
                         )
