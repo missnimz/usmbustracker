@@ -18,7 +18,7 @@ class Dash extends StatefulWidget {
 
 class _DashState extends State<Dash>{
 
-  int _selectedIndex = 0;
+  int _selectedIndex = 2;
   void _navigateBottomNavBar(int index) {
     setState((){
       _selectedIndex = index;

@@ -19,8 +19,14 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   bool isHidepass = true;
   final _formkey = GlobalKey<FormState>();
-  final icController = TextEditingController();
-  final passController = TextEditingController();
+  final _adminFormKey = GlobalKey<FormState>();
+  final TextEditingController icController = TextEditingController();
+  final TextEditingController passController = TextEditingController();
+  final TextEditingController adminUserController = TextEditingController();
+  final TextEditingController adminPassController = TextEditingController();
+
+  //final icController = TextEditingController();
+  //final passController = TextEditingController();
   bool isLoading = false;
   final Login _login = Login();
 
@@ -28,8 +34,32 @@ class _BodyState extends State<Body> {
   void dispose() {
     icController.dispose();
     passController.dispose();
+    adminUserController.dispose();
+    adminPassController.dispose();
     super.dispose();
   }
+
+  String? adminValidation(String? icadmin) {
+    if (icadmin!.isEmpty) {
+      return "Identification card no. can't be empty.";
+      // } else if (ic.length < 0) {
+      //   return "Identification card no. length must be 12";
+      // }
+    }
+    return null;
+  } //this function is used to validate username
+
+  String? passwordAdminValidation(String? passwordAdmin) {
+    if (passwordAdmin!.isEmpty) {
+      return "Password can't be empty.";
+      // } else if (password.length < 6) {
+      //   return "Password length must be more than 5";
+      // }
+    }
+    return null;
+  } //this funtion is used to validate password
+
+
 
   String? userValidation(String? ic) {
     if (ic!.isEmpty) {
@@ -57,7 +87,20 @@ class _BodyState extends State<Body> {
       return true;
     }
     return false;
-  } // this function is used to check whether the login is valid or not
+  }// this function is used to check whether the login is valid or not
+
+  bool _handleAdminLogin() {
+    final form = _adminFormKey.currentState;
+    if (form!.validate()) {
+      form.save();
+      return true;
+    }
+    return false;
+  }
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -79,43 +122,11 @@ class _BodyState extends State<Body> {
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                /*Container(
-                alignment: Alignment.center,
-                height: 100,
-                decoration: const BoxDecoration(
-                  color: Colors.transparent,
-                ),
-                child: const Text(
-                  "NELAYANNET",
 
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 30,
-                    fontStyle: FontStyle.italic,
-                  ),
-                ),
-              ),*/
                 const SizedBox(
                   height: 330,//20//30,
                 ),
-                /*Container(
-                alignment: Alignment.center,
-                height: 100,
-                decoration: const BoxDecoration(
-                  color: Colors.transparent,
-                ),
-                child: const Text(
-                  "LOGIN",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 30,
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 20, //30,
-              ),*/
+
                 SizedBox(
                   width: 300,
                   child: TextFormField(
@@ -169,7 +180,7 @@ class _BodyState extends State<Body> {
                   ),
                 ),
                 const SizedBox(
-                  height: 50, //100,
+                  height: 40, //100,
                 ),
                 Container(
                   width: 120, //100,
@@ -245,6 +256,150 @@ class _BodyState extends State<Body> {
                       },
                     ),
                   ),
+                ),
+                SizedBox( height: 10,),
+            // Login as Administrator button
+            TextButton(
+                onPressed: () {
+                  // Show modal dialog for administrator login
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text(
+                          'Login as Bus Operator',
+                          style: TextStyle(
+                            fontSize: 18, // Adjust the font size as needed
+                          ),
+                        ),
+                        backgroundColor: Colors.purple.shade50, // Set background color to purple shade 50
+                        content: Form(
+                          key: _adminFormKey,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              TextFormField(
+                                controller: adminUserController,
+                                decoration:
+                                InputDecoration(labelText: 'IC'),
+                                validator: adminValidation,
+                              ),
+                              TextFormField(
+                                controller: adminPassController,
+                                obscureText: true,
+                                decoration:
+                                InputDecoration(labelText: 'Password'),
+                                validator: passwordAdminValidation,
+                              ),
+                            ],
+                          ),
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              adminUserController.clear();
+                              adminPassController.clear();
+                              Navigator.of(context).pop();
+                            },
+                            child: Text('Cancel'),
+                          ),
+                          ElevatedButton(
+                            onPressed: () async {
+                              if (_handleAdminLogin()) {
+                                setState(() {
+                                  isLoading = true;
+                                });
+                                try {
+                                  final value = await _login.authenticate(
+                                      adminUserController.text, adminPassController.text);
+                                  if (value != null) {
+                                    setState(() {
+                                      isLoading = false;
+                                    });
+                                    if (value['code'] == 200) {
+                                      final loginResponse = LoginResponse.fromJson(value);
+
+                                      SharedService.setToken(
+                                          loginResponse.token as String);
+                                      Localstorage.savetoken(
+                                          loginResponse.token as String);
+                                      // await Listsensor.getlistsensor();
+                                      await Listuser.getlistuser();
+                                      // await Listvessel.getlistvessel();
+                                      await Detail.getuserdetail();
+                                      UserInfo? userDetail = Detail.information;
+
+                                      if (userDetail != null && userDetail.user?.role == 'Admin') {
+                                        print('User role: ${userDetail.user?.role}');
+
+                                        const snackbar = SnackBar(
+                                          content: Text("Login Successful"),
+                                          duration: Duration(seconds: 1),
+                                        );
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(snackbar);
+
+
+                                        // if (userDetail.sensor != null &amp;&amp; userDetail.sensor!.isNotEmpty) {
+                                        //   await Localstorage.saveEUI(userDetail.sensor![0].eui as String);
+                                        // }
+
+                                        Navigator.of(context).pop();
+                                        Navigator.of(context).pushNamed("/homeAdmin");
+                                      } else {
+                                        adminUserController.clear();
+                                        adminPassController.clear();
+                                        Navigator.of(context).pop();
+                                        final snackbar = SnackBar(
+                                          content: Text("You are not authorized to login as an administrator."),
+                                          backgroundColor: Colors.red,
+                                        );
+                                        ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                                      }
+                                    } else {
+                                      adminUserController.clear();
+                                      adminPassController.clear();
+                                      Navigator.of(context).pop();
+                                      final errorResponse = Error.fromJson(value);
+                                      final snackbar = SnackBar(
+                                        content: Text(errorResponse.errors as String),
+                                        backgroundColor: Colors.red,
+                                      );
+                                      ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                                    }
+                                  }
+                                } catch (e) {
+                                  setState(() {
+                                    isLoading = false;
+                                  });
+                                  final snackbar = SnackBar(
+                                    content: Text("Login Failed: $e"),
+                                    backgroundColor: Colors.red,
+                                  );
+                                  ScaffoldMessenger.of(context).showSnackBar(snackbar);
+
+                                  // Clear the text fields
+                                  adminUserController.clear();
+                                  adminPassController.clear();
+                                }
+                              }
+                            },
+                            child: Text('Login'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+                child: Text(
+                  'Login as Bus Operator',
+                  style: TextStyle(
+                    color: Colors.white, // Set text color to white
+                    fontWeight: FontWeight.bold, // Make the text bold
+                    decoration: TextDecoration.underline, // Underline the text
+                    decorationColor: Colors.white, // Set underline color to white
+                    )
+                  )
                 )
               ],
             ),

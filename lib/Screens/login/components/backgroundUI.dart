@@ -23,7 +23,7 @@ class Background extends StatelessWidget {
           ),
         const Column(
           children: [
-            SizedBox(height: 95,),
+            SizedBox(height: 90,),
             // Image(image: ExactAssetImage("assets/images/usm_ens_logo.png",),
             // ),
             Center( // This centers the image horizontally within the column

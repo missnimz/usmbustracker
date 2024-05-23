@@ -1,4 +1,6 @@
+//
 //NEW CODE (21/5/24)
+/*------------FOR OWN DEVICE--------------------
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -123,12 +125,12 @@ class _CallButtonState extends State<CallButton> {
   }
 }
 
+*/
 
 
 
 
-
-/* ------------- PREVIOUS CODE--------------------------
+// ------------- FOR ANOTHER DEVICE --------------------------
 //import 'dart:js';
 
 import 'dart:convert';
@@ -280,53 +282,55 @@ class _CallButtonState extends State<CallButton> {
                 color: const Color(0xFFA366FF),
               ),
 
-              onPressed: (){
-              //if (deviceToken != null) {   -------ni untuk send to another device-----
-              //print('Device Token: $deviceToken');
+              onPressed: () {
+                if (deviceToken !=
+                    null) { //-------ni untuk send to another device-----
+                  print('Device Token: $deviceToken');
 
-              // send notification from one device to another
+                  // send notification from one device to another
 
-              notificationServices.getDeviceToken().then((value)async{
+                  notificationServices.getDeviceToken().then((value) async {
+                    var data = {
+                      //'to' : 'cGC5hptASpeocBOVVbrwhF:APA91bHicYsmo9D0X6Dgs2QyJ40w_iTSkeUSqIneKvf56W_rOlb3lXdcfL3KFxnnotpE7ncr083eBBB3xIBs0MVPW1R5FTBoRtm6OBREbvsEAD9rvCI2oCyx5XcAtF1zS5Ldn6pIgTEA', //deviceToken!,//value.toString(),
+                      //deviceToken!,
+                      //'to': value.toString(),
+                      'to': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTYxOTgxMTUsImlkIjoxLCJvcmlnX2lhdCI6MTcxNjE3NjUxNSwicm9sZSI6IkZpc2hlcm1hbiJ9.maRggOArvt6rhepV4IfDzTuhURgWjp1gEZmqA8IUMzw',
+                      'notification': {
+                        'title': 'Bus Stop: Komca',
+                        'body': 'Someone is here! Hurry up!',
+                      },
+                      'android': {
+                        'notification': {
+                          'notification_count': 23,
+                        },
+                      },
+                      'data': {
+                        'type': 'Reminder',
+                        'id': 'Student 1'
+                      }
+                    };
 
-              var data = {
-                  //'to' : 'cGC5hptASpeocBOVVbrwhF:APA91bHicYsmo9D0X6Dgs2QyJ40w_iTSkeUSqIneKvf56W_rOlb3lXdcfL3KFxnnotpE7ncr083eBBB3xIBs0MVPW1R5FTBoRtm6OBREbvsEAD9rvCI2oCyx5XcAtF1zS5Ldn6pIgTEA', //deviceToken!,//value.toString(),
-                //deviceToken!,
-                  'to': value.toString(),
-                  //'to': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTYxOTgxMTUsImlkIjoxLCJvcmlnX2lhdCI6MTcxNjE3NjUxNSwicm9sZSI6IkZpc2hlcm1hbiJ9.maRggOArvt6rhepV4IfDzTuhURgWjp1gEZmqA8IUMzw',
-                  'notification' : {
-                  'title' : 'Bus Stop: Komca' ,
-                  'body' : 'Someone is here! Hurry up!' ,
-              },
-                  'android': {
-                  'notification': {
-                  'notification_count': 23,
-                  },
-              },
-                'data' : {
-                'type' : 'Reminder' ,
-                'id' : 'Student 1'
+                    //await
+                    http.post(Uri.parse('https://fcm.googleapis.com/fcm/send'),
+                        body: jsonEncode(data),
+                        headers: {
+                          'Content-Type': 'application/json; charset=UTF-8',
+                          'Authorization': 'key=AAAAybTk2WI:APA91bH2-DgKnodnaS0CDtBU2dWyUahxwg56EBu02W3TsCULrN_k5ZGnEJoyb5TILGU3KT3XbjxYUhexhYj73O2FjqNInBIWIz76Xmt4ApscJBuR1lTb7GIbMZDgJhm60pbp8PUJ-oqv'
+                        }
+                    ).then((value) {
+                      if (kDebugMode) {
+                        print(value.body.toString());
+                      }
+                    }).onError((error, stackTrace) {
+                      if (kDebugMode) {
+                        print(error);
+                      }
+                    });
+                  });
                 }
-              };
-
-                //await
-                http.post(Uri.parse('https://fcm.googleapis.com/fcm/send'),
-                body: jsonEncode(data) ,
-                headers: {
-                'Content-Type': 'application/json; charset=UTF-8',
-                'Authorization' : 'key=AAAAybTk2WI:APA91bH2-DgKnodnaS0CDtBU2dWyUahxwg56EBu02W3TsCULrN_k5ZGnEJoyb5TILGU3KT3XbjxYUhexhYj73O2FjqNInBIWIz76Xmt4ApscJBuR1lTb7GIbMZDgJhm60pbp8PUJ-oqv'
-                    }
-                  ).then((value){
-                  if (kDebugMode) {
-                  print(value.body.toString());
-                  }
-                  }).onError((error, stackTrace){
-                  if (kDebugMode) {
-                  print(error);
-                }
-              });
-              });
-              },
+              }
     ),
+
 
             //),
             SizedBox(height: 150.0),
@@ -344,7 +348,7 @@ class _CallButtonState extends State<CallButton> {
     );
   }
 }
-*/
+
 
 /*-----original code below--------------*/
 

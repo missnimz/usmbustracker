@@ -44,17 +44,17 @@ class Getdata {
     var recordStream = await queryService.query('''
     import "experimental/geo"
     import "date"
-  from(bucket: "$bucket")
-  |> range(start: -2h)
-  |> filter(fn: (r) => r["_field"] == "latitude" or r["_field"] == "longitude")
-  |> filter(fn: (r) => date.yearDay(t: r["_time"]) == date.yearDay(t: now()))
-  |> geo.shapeData(
-    latField: "latitude",
-    lonField: "longitude",
-    level: 1
-  )
-  |> tail(n: 1)
-  ''');
+    from(bucket: "$bucket")
+    |> range(start: -2h)
+    |> filter(fn: (r) => r["_field"] == "latitude" or r["_field"] == "longitude")
+    |> filter(fn: (r) => date.yearDay(t: r["_time"]) == date.yearDay(t: now()))
+    |> geo.shapeData(
+      latField: "latitude",
+      lonField: "longitude",
+      level: 1
+    )
+    |> tail(n: 1)
+    ''');
 
   await recordStream.forEach((record) {
       print(record);
