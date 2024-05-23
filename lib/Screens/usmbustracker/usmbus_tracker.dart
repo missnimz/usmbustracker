@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
@@ -21,7 +23,7 @@ class _USMBusTrackerState extends State<USMBusTracker> {
   String googleAPIKey = "AIzaSyDkuGZreKvhWhLfN5MqHhL9ysYk9Yq1HwY";
   //late GoogleMapController _googleMapController;
   GoogleMapController? _googleMapController;
-  Timer? _timer;
+  //Timer? _timer;
   LocationData? currentLocation;
 
   //List<LatLng> polylineCoordinates = [];
@@ -35,9 +37,9 @@ class _USMBusTrackerState extends State<USMBusTracker> {
 
 
 
-  static const LatLng destination = LatLng(
-      5.3596,  100.3023); //komca
   static const LatLng sourcelocation = LatLng(
+      5.3596,  100.3023); //komca
+  static const LatLng destination = LatLng(
       5.3585, 100.3045); //DKSK
 
 
@@ -124,6 +126,7 @@ class _USMBusTrackerState extends State<USMBusTracker> {
   }
   */
 
+  /*------SECOND ORI CODE
   void getCurrentLocation() async{
     Location location = Location();
 
@@ -134,11 +137,13 @@ class _USMBusTrackerState extends State<USMBusTracker> {
     );
 
     GoogleMapController googleMapController = await _controller.future;
+    Timer? debounceTimer; //boleh delete kalau taknak
 
     location.onLocationChanged.listen(
             (newLoc)
         {
           currentLocation = newLoc;
+
           googleMapController.animateCamera(CameraUpdate.newCameraPosition(
               CameraPosition(
                 zoom: 13.5,
@@ -153,6 +158,61 @@ class _USMBusTrackerState extends State<USMBusTracker> {
         },
     );
   }
+*/
+
+  //yg ada timer
+  void getCurrentLocation() async {
+    Location location = Location();
+
+    location.getLocation().then(
+          (location) {
+        currentLocation = location;
+      },
+    );
+
+    GoogleMapController googleMapController = await _controller.future;
+    Timer? debounceTimer;
+    LatLng? previousLocation;
+
+    location.onLocationChanged.listen(
+          (newLoc) {
+            currentLocation = newLoc;
+            LatLng newLatLng = LatLng(newLoc.latitude!, newLoc.longitude!);
+
+            if (previousLocation == null ||
+                _isSignificantChange(previousLocation!, newLatLng)) {
+              previousLocation = newLatLng;
+
+              if (debounceTimer != null) {
+                debounceTimer!.cancel();
+              }
+
+              debounceTimer = Timer(Duration(seconds: 1), () {
+                googleMapController.animateCamera(
+                  CameraUpdate.newCameraPosition(
+                    CameraPosition(
+                      zoom: 15,
+                      target: LatLng(
+                        newLoc.latitude!,
+                        newLoc.longitude!,
+                      ),
+                    ),
+                  ),
+                );
+
+                setState(() {});
+              });
+            }
+          },
+    );
+  }
+
+  bool _isSignificantChange(LatLng oldLocation, LatLng newLocation) {
+      const double threshold = 0.0001; // Adjust this threshold based on your requirements
+      double latDifference = (oldLocation.latitude - newLocation.latitude).abs();
+      double lngDifference = (oldLocation.longitude - newLocation.longitude).abs();
+      return latDifference > threshold || lngDifference > threshold;
+    }
 
 
 
@@ -214,7 +274,7 @@ class _USMBusTrackerState extends State<USMBusTracker> {
                       initialCameraPosition: CameraPosition(
                         target: LatLng(currentLocation!.latitude!,
                             currentLocation!.longitude!),
-                        zoom: 10,
+                        zoom: 15,
                       ),
                         onMapCreated: (controller) {
                           _controller.complete(controller);
@@ -263,9 +323,12 @@ class _USMBusTrackerState extends State<USMBusTracker> {
                           markerId: MarkerId("destination"),
                           position: destination,
                         )
+                      },
+                      gestureRecognizers: {
+                        Factory<OneSequenceGestureRecognizer>(
+                              () => EagerGestureRecognizer(),
+                        ),
                       }
-
-
                   ),
                 ),
 
