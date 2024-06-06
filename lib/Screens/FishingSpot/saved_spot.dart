@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:nelayannet/Screens/FishingSpot/components/spot_map.dart';
+//import 'package:flutter/material.dart';
+//import 'package:nelayannet/Screens/FishingSpot/components/spot_map.dart';
 
 
-class FishingSpot extends StatelessWidget {
-  const FishingSpot({ Key? key }) : super(key: key);
-
+//class FishingSpot extends StatelessWidget {
+  //const FishingSpot({ Key? key }) : super(key: key);
+/*
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -25,3 +25,4 @@ class FishingSpot extends StatelessWidget {
     );
   }
 }
+*/

@@ -3,8 +3,9 @@ import 'dart:convert';
 
 class Login {
   Future authenticate(String ic, String password) async {
-    // Uri link = Uri.parse("http://moby.cs.usm.my:8000/api/v1/login");
-    Uri link = Uri.parse("http://10.0.2.2:8000/api/v1/login");
+     Uri link = Uri.parse("http://moby.cs.usm.my:8000/api/v1/login");
+    //Uri link = Uri.parse("http://10.0.2.2:8000/api/v1/login");
+    //Uri link = Uri.parse("http://10.207.201.177:58068/api/v1/login");
 
     var response = await http.post(link,
         headers: <String, String>{

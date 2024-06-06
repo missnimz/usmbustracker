@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:nelayannet/Screens/Journey/components/distance.dart';
-import 'package:nelayannet/Screens/Journey/components/myjourney.dart';
-import 'package:nelayannet/Screens/tracking/components/locationlist.dart';
 
+//import 'package:flutter/material.dart';
+//import 'package:nelayannet/Screens/Journey/components/distance.dart';
+//import 'package:nelayannet/Screens/Journey/components/myjourney.dart';
+//import 'package:nelayannet/Screens/tracking/components/locationlist.dart';
+/*
 class UserJourney extends StatelessWidget {
   const UserJourney({Key? key}) : super(key: key);
 
@@ -23,8 +24,8 @@ class UserJourney extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 // LocationsList()
-                DistanceTracelled(),
-                Myjourney(),
+                //DistanceTracelled(),
+                //Myjourney(),
               ],
             ),
           ),
@@ -32,6 +33,8 @@ class UserJourney extends StatelessWidget {
       ),
     );
   }
+
+ */
 
   /*
   @override
@@ -74,4 +77,4 @@ class UserJourney extends StatelessWidget {
       ),
     );
   }*/
-}
+//}

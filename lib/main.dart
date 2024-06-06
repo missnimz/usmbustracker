@@ -23,6 +23,8 @@ import 'Screens/profile/components/editprofile_interface.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'firebase_options.dart';
+import 'package:flogger/flogger.dart';
+
 
 /*
 void main() async {
@@ -115,12 +117,15 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+
   // Initialize notifications
   //NotificationService.init();
 
+  Widget _home = const LoginPage();
+
   bool _result = await SharedService.isLoggedIn();
   print(_result);
-  Widget _home;
+  //Widget _home;
 
   if (_result) {
     print("TOKEN: ");
@@ -156,15 +161,19 @@ void main() async {
       }
     }
   }
-  runApp(const MyApp());
+  //runApp(const MyApp());
+  runApp(MyApp(home: _home));
 }
 
 
   //Widget _home = const Home();
-  Widget _home = const LoginPage();
+
 
   class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+    final Widget home;
+
+    const MyApp({Key? key, required this.home}) : super(key: key);
+  //const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -175,30 +184,19 @@ void main() async {
         theme: ThemeData(
         primarySwatch: Colors.blue,
         ),
-        home: _home,
+        //home: _home,
+          home: home,
         routes: {
         "/login": (_) => const LoginPage(),
-        // "/home1": (_) => const Home(),
         "/home": (_) => const Dash(),
         "/homeAdmin": (_) => const TopNavigationBarAdmin(),
-        //"/dashAdmin": (_) => const Dashadmin(),
-        // "/homepage1": (_) => const Dashboard(),
-        // "/homepage": (_) => const Homepage(),
         "/dashboard": (_) => const Dashboard(),
         "/ens": (_) => const Ens(),
-        //"/post": (_) => const Postint(),
         "/tracking": (_) => const TrackingPage(),
-        // "/direction": (_) => const DirectionsPage(destination: destination),
-        // "/direction": (_) =>  DirectionScreen(),
         "/environment": (_) => const Environment(),
-        // "/fishermans": (_) => const Fishermans(),
-        // "/analytic": (_) => const Analyticpage(),
-        // "/journey": (_) => const UserJourney(),
         "/profile": (_) => const Profilepage(),
-        // "/fishingspot": (_) => const FishingSpot(),
         "/editprofile": (_) => const EditProfile(),
         "/userdetails": (_) => const DetailsInterface(),
-        // "/post": (_) => Post(),
         },
       );
     }

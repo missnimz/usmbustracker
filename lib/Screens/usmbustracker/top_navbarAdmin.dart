@@ -3,7 +3,7 @@ import 'package:nelayannet/Screens/usmbustracker/callbutton.dart';
 import 'package:nelayannet/Screens/usmbustracker/home_screen.dart';
 import 'package:nelayannet/Screens/usmbustracker/schedule_page.dart';
 import 'package:nelayannet/Screens/usmbustracker/displaynotif_Admin.dart.';
-import 'package:nelayannet/Screens/usmbustracker/usmbus_tracker.dart';
+import 'package:nelayannet/Screens/usmbustracker/bus/usmbus_tracker.dart';
 
 
 class TopNavigationBarAdmin extends StatelessWidget{

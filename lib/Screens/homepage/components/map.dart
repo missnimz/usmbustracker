@@ -1,20 +1,21 @@
-import 'dart:async';
-import 'dart:collection';
-import 'package:nelayannet/Model/fishing_spot.dart';
-import 'package:nelayannet/db/fish_spot.dart';
-import 'package:nelayannet/influx.dart';
-import 'package:nelayannet/Model/fishermans_model.dart';
-import 'package:nelayannet/Model/sensors_model.dart';
-import 'package:nelayannet/Model/vessels_model.dart';
-import 'package:nelayannet/Services/detaillist.dart';
-import 'package:nelayannet/Services/shared_services.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:material_floating_search_bar/material_floating_search_bar.dart';
+//import 'dart:async';
+//import 'dart:collection';
+//import 'package:nelayannet/Model/fishing_spot.dart';
+//import 'package:nelayannet/db/fish_spot.dart';
+//import 'package:nelayannet/influx.dart';
+//import 'package:nelayannet/Model/fishermans_model.dart';
+//import 'package:nelayannet/Model/sensors_model.dart';
+//import 'package:nelayannet/Model/vessels_model.dart';
+//import 'package:nelayannet/Services/detaillist.dart';
+//import 'package:nelayannet/Services/shared_services.dart';
+//import 'package:flutter/foundation.dart';
+//import 'package:flutter/gestures.dart';
+//import 'package:flutter/material.dart';
+//import 'package:google_maps_flutter/google_maps_flutter.dart';
+//import 'package:geolocator/geolocator.dart';
+//import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
+/*
 class ViewMap extends StatefulWidget {
   const ViewMap({Key? key}) : super(key: key);
 
@@ -557,3 +558,5 @@ class _ViewMapState extends State<ViewMap> {
         ));
   }*/
 }
+
+ */

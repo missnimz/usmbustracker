@@ -91,9 +91,9 @@ class Homepage extends StatelessWidget {
               TabBarView(
                   children: [
                     Fishermans(),
-                    UserJourney(),
+                    //UserJourney(),
                     Analyticpage(),
-                    FishingSpot(),
+                    //FishingSpot(),
                   ]
               ),
             ],

@@ -1,17 +1,18 @@
-import 'dart:async';
-import 'package:nelayannet/Services/detaillist.dart';
-import 'package:nelayannet/db/fish_spot.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:nelayannet/influx.dart';
+/*
+//import 'dart:async';
+//import 'package:nelayannet/Services/detaillist.dart';
+//import 'package:nelayannet/db/fish_spot.dart';
+//import 'package:flutter/foundation.dart';
+//import 'package:flutter/gestures.dart';
+//import 'package:flutter/material.dart';
+//import 'package:google_maps_flutter/google_maps_flutter.dart';
+//import 'package:nelayannet/influx.dart';
 
-class LoadSpot extends StatefulWidget {
-  const LoadSpot({ Key? key }) : super(key: key);
-  @override
-  State<LoadSpot> createState() => _LoadSpotState();
-}
+//class LoadSpot extends StatefulWidget {
+  //const LoadSpot({ Key? key }) : super(key: key);
+  //@override
+  //State<LoadSpot> createState() => _LoadSpotState();
+//
 
 class _LoadSpotState extends State<LoadSpot> {
   var user = Detail.information!.user;
@@ -26,6 +27,7 @@ class _LoadSpotState extends State<LoadSpot> {
      super.initState();
      setcustommarker();
  }
+
 
  void setcustommarker() async {
   mapMarker = await BitmapDescriptor.fromAssetImage(const ImageConfiguration(size: Size(10, 10)), 'assets/images/fish_icon.png');
@@ -149,4 +151,4 @@ class _LoadSpotState extends State<LoadSpot> {
 
     );
   }
-}
+} */

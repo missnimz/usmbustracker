@@ -93,7 +93,7 @@ class Ens extends StatelessWidget {
                     // UserJourney(),
                     TrackingPage(),
                     Analyticpage(),
-                    FishingSpot(),
+                    //FishingSpot(),
                   ]
               ),
             ],

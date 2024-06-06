@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import '../profile/profile.dart';
-import 'Components/map.dart';
-import 'homepage.dart';
+//import 'package:flutter/material.dart';
+//import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+//import '../profile/profile.dart';
+//import 'Components/map.dart';
+//import 'homepage.dart';
 // import '../../../Screens/dashboard.dart';
-
+/*
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
   @override
@@ -22,7 +22,7 @@ class _HomeState extends State<Home>{
 
   final List<Widget> _children = [
     const Homepage(),
-    const ViewMap(),
+    //const ViewMap(),
     const Profilepage(),
   ];
 
@@ -50,3 +50,4 @@ class _HomeState extends State<Home>{
     );
   }
 }
+ */

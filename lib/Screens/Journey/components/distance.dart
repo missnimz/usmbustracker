@@ -1,11 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:nelayannet/influx.dart';
-import 'package:nelayannet/Model/monthly_distance.dart';
-import 'package:nelayannet/Model/weeklydistance.dart';
-import 'package:nelayannet/Services/getcurrentmonth.dart';
-import 'package:nelayannet/Services/getcurrentweek.dart';
-import 'package:geolocator/geolocator.dart';
+//import 'package:flutter/material.dart';
+//import 'package:nelayannet/influx.dart';
+//import 'package:nelayannet/Model/monthly_distance.dart';
+//import 'package:nelayannet/Model/weeklydistance.dart';
+//import 'package:nelayannet/Services/getcurrentmonth.dart';
+//import 'package:nelayannet/Services/getcurrentweek.dart';
+//import 'package:geolocator/geolocator.dart';
 
+/*
 class DistanceTracelled extends StatefulWidget {
   const DistanceTracelled({Key? key}) : super(key: key);
 
@@ -132,3 +133,5 @@ class _DistanceTracelledState extends State<DistanceTracelled> {
     );
   }
 }
+
+ */
