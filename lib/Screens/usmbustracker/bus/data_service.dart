@@ -110,8 +110,10 @@ Future<Map<String, dynamic>> fetchData(String sensorId, Getfirstdata getFirstDat
 }
 
 // Fixed average speed in m/s (30 km/h)
-const double fixedSpeed = 8.33;
+//const double fixedSpeed = 8.33;
 
-double calculateETA(double distance, double speed) {
-  return distance / speed / 60; // ETA in minutes
-}
+//double calculateETA(double distance, double speed) {
+  //return distance / speed / 60; // ETA in minutes
+//}
+
+

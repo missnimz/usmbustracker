@@ -14,6 +14,7 @@ class Login {
         body: jsonEncode({"ic": ic, "password": password}));
 
     if (response.statusCode == 200 || response.statusCode == 400) {
+      print("Response Login: "+response.body);
       //final responsebody = LoginResponse.fromJson(json.decode(response.body));
       return json.decode(response.body);
     } else {

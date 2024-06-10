@@ -1,18 +1,21 @@
 class LoginResponse {
   String? expire;
   String? token;
+  int? code;
 
-  LoginResponse({this.expire, this.token});
+  LoginResponse({this.expire, this.token, this.code});
 
   LoginResponse.fromJson(Map<String, dynamic> json) {
     expire = json['expire'];
     token = json['token'];
+    code = json['code'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['expire'] = expire;
     data['token'] = token;
+    data['code'] = code;
     return data;
   }
 }

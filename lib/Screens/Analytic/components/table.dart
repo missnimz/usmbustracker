@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:nelayannet/Model/user_monthly_distance.dart';
-import 'package:nelayannet/Services/user_distance.dart';
-
+//import 'package:flutter/material.dart';
+//import 'package:nelayannet/Model/user_monthly_distance.dart';
+//import 'package:nelayannet/Services/user_distance.dart';
+/*
 class Distance {
   int month;
   double distance;
@@ -142,3 +142,5 @@ class _ShowTableState extends State<ShowTable> {
     );
   }
 }
+
+ */

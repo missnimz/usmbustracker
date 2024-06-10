@@ -1,10 +1,10 @@
-import 'package:nelayannet/Screens/Analytic/analytic.dart';
-import 'package:nelayannet/Screens/FishingSpot/saved_spot.dart';
-import 'package:nelayannet/Screens/Journey/journey.dart';
+//import 'package:nelayannet/Screens/Analytic/analytic.dart';
+//import 'package:nelayannet/Screens/FishingSpot/saved_spot.dart';
+//import 'package:nelayannet/Screens/Journey/journey.dart';
 import 'package:nelayannet/Screens/dashboard/bottomnavbar.dart';
 import 'package:nelayannet/Screens/ens/ens.dart';
 import 'package:nelayannet/Screens/environment/environment.dart';
-import 'package:nelayannet/Screens/fishermanlist/fishermanlist.dart';
+//import 'package:nelayannet/Screens/fishermanlist/fishermanlist.dart';
 import 'package:nelayannet/Screens/profile/profile.dart';
 import 'package:nelayannet/Screens/tracking/tracking.dart';
 import 'package:nelayannet/Screens/usmbustracker/top_navbarAdmin.dart';
@@ -12,8 +12,8 @@ import 'package:nelayannet/Services/detaillist.dart';
 import 'package:flutter/material.dart';
 import 'package:nelayannet/Screens/login/login.dart';
 import 'package:nelayannet/Services/shared_services.dart';
-import 'Screens/homepage/bottomnavigatorbar.dart';
-import 'Screens/homepage/homepage.dart';
+//import 'Screens/homepage/bottomnavigatorbar.dart';
+//import 'Screens/homepage/homepage.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'Screens/dashboard/dashboard.dart';
@@ -23,93 +23,13 @@ import 'Screens/profile/components/editprofile_interface.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'firebase_options.dart';
-import 'package:flogger/flogger.dart';
+//import 'package:flogger/flogger.dart';
+import 'package:provider/provider.dart';
+//import 'package:nelayannet/Screens/usmbustracker/bus/busdata_provider.dart';
+//import 'package:nelayannet/influx.dart';
 
 
-/*
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform,
-  );
-  //try {
-    bool _result = await SharedService.isLoggedIn();
-    print(_result);
-    if (_result) {
-      print("TOKEN: ");
-      // Perform a null check before casting to String
-      String? token = await const FlutterSecureStorage().read(
-          key: 'token') as String?;
-      // String token = await const FlutterSecureStorage().read(
-      //     key: 'token') as String;
-      if (token != null) { //add new
-        print(token);
-        bool isExpired = JwtDecoder.isExpired(token);
-        print("EXPIRED");
-        print(isExpired);
-        if (!isExpired) {
-          await Listsensor.getlistsensor();
-          await Listvessel.getlistvessel();
-          await Listuser.getlistuser();
-          await Detail.getuserdetail();
-          await Listpost.getlistpost();
-        }
-        //_home = const Homepage();
-        // _home = const Home();
-        _home = const Dash();
-        // _home = const Dashboard();
-      } else { //addnew
-        // Handle the case where the token is null (e.g., not found in FlutterSecureStorage)
-        _home = const LoginPage(); //addnew
-      }
-    }
-  /*} catch (e) {
-    print('Error occurred: $e');
-    // Handle the error appropriately
-  }*/
-  runApp(const MyApp());
-}
-
-//Widget _home = const Home();
-Widget _home = const LoginPage();
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'User Interface',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: _home,
-      routes: {
-        "/login": (_) => const LoginPage(),
-        // "/home1": (_) => const Home(),
-        "/home": (_) => const Dash(),
-        // "/homepage1": (_) => const Dashboard(),
-        // "/homepage": (_) => const Homepage(),
-        "/dashboard": (_) => const Dashboard(),
-        "/ens": (_) => const Ens(),
-        "/tracking": (_) => const TrackingPage(),
-        "/environment": (_) => const Environment(),
-        "/fishermans": (_) => const Fishermans(),
-        "/analytic": (_) => const Analyticpage(),
-        "/journey": (_) => const UserJourney(),
-        "/profile": (_) => const Profilepage(),
-        "/fishingspot": (_) => const FishingSpot(),
-        "/editprofile": (_) => const EditProfile(),
-        "/userdetails": (_) => const DetailsInterface(),
-        // "/post": (_) => Post(),
-
-      },
-    );
-  }
-}
- */ //----------ORIGINAL CODE ABOVE--------
+//----------ORIGINAL CODE ABOVE--------
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -161,9 +81,13 @@ void main() async {
       }
     }
   }
+
   //runApp(const MyApp());
+
   runApp(MyApp(home: _home));
+
 }
+
 
 
   //Widget _home = const Home();

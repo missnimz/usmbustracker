@@ -206,13 +206,17 @@ class _BodyState extends State<Body> {
                               .authenticate(
                               icController.text, passController.text)
                               .then((value) async {
+                                // print("Evalue);
                             if (value != null) {
+                              // print("value not null:: " + value);
                               setState(() {
                                 isLoading = false;
                               });
                             }
+
                             print("DONE THIS PART 2");
-                            if (value['code'] == 200) {
+                            if (value['token'] != null) {
+
                               loginResponse = LoginResponse.fromJson(value);
 
                               const snackbar = SnackBar(
@@ -225,9 +229,9 @@ class _BodyState extends State<Body> {
                                   loginResponse.token as String);
                               Localstorage.savetoken(
                                   loginResponse.token as String);
-                              await Listsensor.getlistsensor();
-                              await Listuser.getlistuser();
-                              await Listvessel.getlistvessel();
+                              //await Listsensor.getlistsensor();
+                              //await Listuser.getlistuser();
+                              // await Listvessel.getlistvessel();
                               await Detail.getuserdetail();
                               UserInfo? userDetail = Detail.information;
                               //print("DONE THIS PART");
@@ -324,7 +328,7 @@ class _BodyState extends State<Body> {
                                       Localstorage.savetoken(
                                           loginResponse.token as String);
                                       // await Listsensor.getlistsensor();
-                                      await Listuser.getlistuser();
+                                      //await Listuser.getlistuser();
                                       // await Listvessel.getlistvessel();
                                       await Detail.getuserdetail();
                                       UserInfo? userDetail = Detail.information;

@@ -1,9 +1,12 @@
-import 'package:nelayannet/Model/weeklydistance.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'dart:async';
 
-import 'package:nelayannet/Services/flutter_secure_storage.dart';
+//import 'package:nelayannet/Model/weeklydistance.dart';
+//import 'package:http/http.dart' as http;
+//import 'dart:convert';
+//import 'dart:async';
+
+//import 'package:nelayannet/Services/flutter_secure_storage.dart';
+
+/*
 
 class GetcurrentWeek {
   Future<WeeklyDistance> getcurrentweek() async {
@@ -36,3 +39,5 @@ class GetcurrentWeek {
     }
   }
 }
+
+ */

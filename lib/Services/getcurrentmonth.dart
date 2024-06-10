@@ -1,12 +1,12 @@
-import 'package:nelayannet/Model/monthly_distance.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+//import 'package:nelayannet/Model/monthly_distance.dart';
+//import 'package:http/http.dart' as http;
+//import 'dart:convert';
 //import 'dart:async';
 
 //import 'package:nelayannet/Services/detailslist.dart';
-import 'package:nelayannet/Services/flutter_secure_storage.dart';
-
-class GetcurrentMonth {
+//import 'package:nelayannet/Services/flutter_secure_storage.dart';
+/*
+//class GetcurrentMonth {
   Future<MonthlyDistance> getcurrentmonth() async {
     String? eui = await Localstorage.geteui();
 
@@ -32,3 +32,5 @@ class GetcurrentMonth {
     }*/
   }
 }
+
+ */

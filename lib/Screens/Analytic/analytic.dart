@@ -35,8 +35,8 @@ class Analyticpage extends StatelessWidget {
           const SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                Body(),
-                ShowTable(),
+                //Body(),
+                //ShowTable(),
                 ],
             ),
           ),

@@ -1,9 +1,9 @@
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'package:nelayannet/Model/user_monthly_distance.dart';
-import 'package:nelayannet/Services/flutter_secure_storage.dart';
+//import 'package:http/http.dart' as http;
+//import 'dart:convert';
+//import 'package:nelayannet/Model/user_monthly_distance.dart';
+//import 'package:nelayannet/Services/flutter_secure_storage.dart';
 //import 'package:tracker_fisherman/Services/detailslist.dart';
-
+/*
 class GetEveryMonthDistance {
   Future<UserEveryMonthDistance> geteverymonthdistance() async {
     //String user = Detail.information!.sensor![0].eui as String;
@@ -22,3 +22,5 @@ class GetEveryMonthDistance {
     }
   }
 }
+
+ */

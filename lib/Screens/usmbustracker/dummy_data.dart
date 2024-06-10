@@ -1,5 +1,5 @@
+/*
 import 'dart:convert';
-
 class BusStop {
   final int id;
   final String name;
@@ -51,3 +51,5 @@ Future<List<BusStop>> fetchDummyBusStops() async {
   List<dynamic> jsonData = json.decode(dummyResponse);
   return jsonData.map((json) => BusStop.fromJson(json)).toList();
 }
+
+ */
