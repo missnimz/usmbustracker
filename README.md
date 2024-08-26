@@ -1,16 +1,5 @@
-# nelayannet
+# USM Bus Tracker 
 
-A new Flutter project.
+This project is a continuation of a previous version, which I've modified and enhanced to create the USM Bus Tracker.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Real Project Title: USM On Campus Bus Service Real-Time Tracking using LoRaWAN Technology
